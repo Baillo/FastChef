@@ -7,12 +7,21 @@ using UnityEngine;
 
 
 public enum IngredientesLanche { PaoCima, Alface, Tomate, Queijo, Hamburguer, PaoBaixo };
+public enum Cores {PaoCimaCor, AlfaceCor, TomateCor, QueijoCor, HamburguerCor, PaoBaixoCor};
 
 
-public class Ingredientes 
+public static class Ingredientes 
 {
     private static Color32 cor;
-
+    private static List<Color32> coresIngredientes = new List<Color32>
+{
+            new Color32 (64, 128, 192, 255),
+            new Color32(152, 255, 143, 255),
+            new Color32(231, 10, 27, 255),
+            new Color32(227, 231, 10, 255),
+            new Color32(70, 17, 11, 255),
+            new Color32(253, 138, 125, 255),
+};
     /// <summary>
     /// EnviarPosicao e a cor do ingrediente para o controlador do ingrediente
     /// </summary>
@@ -21,33 +30,29 @@ public class Ingredientes
         switch (escolhido)
         {      
             case IngredientesLanche.PaoCima:
-                cor = new Color32(64, 128, 192, 255);
+                cor = coresIngredientes[(int)Cores.PaoCimaCor];
                 break;
 
             case IngredientesLanche.Alface:
-                cor = new Color32(152, 255, 143, 255);
+                cor = coresIngredientes[(int)Cores.AlfaceCor];
                 break;
 
             case IngredientesLanche.Tomate:
-                cor = new Color32(231, 10, 27, 255);
+                cor = coresIngredientes[(int)Cores.TomateCor];
                 break;
 
             case IngredientesLanche.Queijo:
-                cor = new Color32(227, 231, 10, 255);
+                cor = coresIngredientes[(int)Cores.QueijoCor];
                 break;
 
             case IngredientesLanche.Hamburguer:
-                cor = new Color32(70, 17, 11, 255);
+                cor = coresIngredientes[(int)Cores.HamburguerCor];
                 break;
 
             case IngredientesLanche.PaoBaixo:
-                cor = new Color32(253, 138, 125, 255);
+                cor = coresIngredientes[(int)Cores.PaoBaixoCor];
                 break;
         }
-        ControladorDoIngrediente.AtualizarMinhaPosicao(cor, posicao);
-
+        ControladorDoIngrediente.instance.AtualizarMinhaPosicao(cor, posicao);
     }
-
-
-
 }

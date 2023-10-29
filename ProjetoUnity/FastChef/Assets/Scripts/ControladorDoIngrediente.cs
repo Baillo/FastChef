@@ -4,20 +4,21 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-
-
 public class ControladorDoIngrediente : MonoBehaviour , IDragHandler
 {
     [Header("Controle do ingrediente")]
-    public Camera camera;
-    public Canvas myCanvas;
-    public GameObject teste;
-    private static Color32 minhaCor;
-    private static RectTransform minhaPosicao;
+
+    [SerializeField] private Camera camera;
+    [SerializeField] private Canvas myCanvas;
+    private Color32 minhaCor;
+    private RectTransform minhaPosicao;
     public static bool habilitado;
 
-    public void Start()
+    public static ControladorDoIngrediente instance;
+
+    private void Awake()
     {
+        instance = this;
         minhaCor = GetComponent<Image>().color;
         minhaPosicao = GetComponent<RectTransform>();
     }
@@ -48,14 +49,10 @@ public class ControladorDoIngrediente : MonoBehaviour , IDragHandler
         }
     }
 
-    public static void AtualizarMinhaPosicao(Color32 corNova, Vector2 posicaoNova)
+    public void AtualizarMinhaPosicao(Color32 corNova, Vector2 posicaoNova)
     {
-        Debug.Log(minhaCor);
-        Debug.Log(corNova);
         minhaPosicao.anchoredPosition = posicaoNova;
-        minhaCor = corNova;
-        Debug.Log(minhaCor);
-     
+        minhaCor = corNova;     
     }
 
 }
